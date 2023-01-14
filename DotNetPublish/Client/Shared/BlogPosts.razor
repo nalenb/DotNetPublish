@@ -1,0 +1,17 @@
+﻿<h3>BlogPosts</h3>
+
+@foreach (var post in Posts)
+{
+    <div>
+        <p>@post.Title</p>
+        <p>@post.Description</p>
+    </div>    
+}
+
+@code {
+    public List<BlogPost> Posts = new List<BlogPost>()
+    {
+        new BlogPost { Slug = "first_post", Title = "First Post", Description = "This is my first description" },
+        new BlogPost { Slug = "second_post", Title = "Second Post", Description = "This is my second description" }
+    };
+}
