@@ -11,6 +11,10 @@ else
     @foreach (var post in Posts)
     {
         <div>
+            @if (post.CoverImage != null)
+            {
+                <p><img src="@post.CoverImage" alt="Cover Image" width="200" /></p>
+            }
             <p>@post.Title</p>
             <p>@post.Description</p>
             <p><a href="/posts/@post.Slug">Read more...</a></p>

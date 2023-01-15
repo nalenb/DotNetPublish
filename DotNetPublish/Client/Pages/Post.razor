@@ -6,6 +6,12 @@
     <p>@Message</p>
 }
 else {
+    @if (CurrentPost.CoverImage != null)
+    {
+        <div>       
+            <img src="@CurrentPost.CoverImage" alt="Cover Image" />
+        </div>
+    }
     <h3>@CurrentPost.Title</h3>
 
     <p>

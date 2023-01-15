@@ -13,6 +13,7 @@ public class BlogPost
     public string Description { get; set; } = string.Empty;
     [Required]
     public string Author { get; set; } = string.Empty;
+    public string? CoverImage { get; set; }
     [Required]
     public string Content { get; set; } = string.Empty;
     public DateTime DatePublished { get; set; } = DateTime.Now;
