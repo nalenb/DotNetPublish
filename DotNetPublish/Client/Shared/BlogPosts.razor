@@ -14,8 +14,13 @@
 @code {
     private List<BlogPost> Posts = new List<BlogPost>();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        Posts = BlogPostSerivce.GetBlogPosts();
+        var posts = await BlogPostSerivce.GetBlogPosts();
+
+        if (posts != null)
+        {
+            Posts = posts;
+        }
     }
 }

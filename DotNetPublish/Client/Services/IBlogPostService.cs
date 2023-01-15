@@ -2,6 +2,6 @@
 
 public interface IBlogPostService
 {
-    List<BlogPost> GetBlogPosts();
-    BlogPost? GetBlogPost(string slug);
+    public Task<List<BlogPost>?> GetBlogPosts();
+    public Task<BlogPost?> GetBlogPost(string slug);
 }

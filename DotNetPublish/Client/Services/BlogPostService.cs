@@ -1,20 +1,27 @@
-﻿namespace DotNetPublish.Client.Services;
+﻿using System.Net.Http.Json;
+
+namespace DotNetPublish.Client.Services;
 
 public class BlogPostService : IBlogPostService
 {
-    private List<BlogPost> Posts = new List<BlogPost>()
-    {
-        new BlogPost { Slug = "first_post", Title = "First Post", Description = "This is my first description", Content = "This is the content of the first blog post" },
-        new BlogPost { Slug = "second_post", Title = "Second Post", Description = "This is my second description", Content = "This is the content of the second blog post" }
-    };
+    public HttpClient _http { get; }
 
-    List<BlogPost> IBlogPostService.GetBlogPosts()
+    public BlogPostService(HttpClient http)
     {
-        return Posts;
+        _http = http;
     }
 
-    BlogPost? IBlogPostService.GetBlogPost(string slug)
+    public async Task<List<BlogPost>?> GetBlogPosts()
     {
-        return Posts.FirstOrDefault(post => post.Slug.ToLower() == slug.ToLower());
+        var posts = await _http.GetFromJsonAsync<List<BlogPost>>("api/BlogPost/");
+
+        return posts;
+    }
+
+    public async Task<BlogPost?> GetBlogPost(string slug)
+    {
+        var post = await _http.GetFromJsonAsync<BlogPost>($"api/BlogPost/{slug}");
+
+        return post;
     }
 }
