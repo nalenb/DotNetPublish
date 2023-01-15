@@ -1,5 +1,4 @@
-﻿using DotNetPublish.Shared;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetPublish.Server.Controllers;
 
@@ -7,22 +6,23 @@ namespace DotNetPublish.Server.Controllers;
 [ApiController]
 public class BlogPostController : ControllerBase
 {
-    private List<BlogPost> Posts = new List<BlogPost>()
+    private readonly DataContext _context;
+
+    public BlogPostController(DataContext context)
     {
-        new BlogPost { Slug = "first_post", Title = "First Post", Description = "This is my first description", Content = "This is the content of the first blog post" },
-        new BlogPost { Slug = "second_post", Title = "Second Post", Description = "This is my second description", Content = "This is the content of the second blog post" }
-    };
+        _context = context;
+    }
 
     [HttpGet]
     public ActionResult<List<BlogPost>> Get()
     {
-        return Ok(Posts);
+        return Ok(_context.BlogPosts);
     }
 
     [HttpGet("{slug}")]
     public ActionResult<BlogPost> Get(string slug)
     {
-        var foundPost = Posts.FirstOrDefault(post => post.Slug.ToLower().Equals(slug.ToLower()));
+        var foundPost = _context.BlogPosts.FirstOrDefault(post => post.Slug.ToLower().Equals(slug.ToLower()));
 
         if (foundPost == null)
         {
