@@ -16,7 +16,7 @@ public class BlogPostController : ControllerBase
     [HttpGet]
     public ActionResult<List<BlogPost>> Get()
     {
-        return Ok(_context.BlogPosts);
+        return Ok(_context.BlogPosts.OrderByDescending(post => post.DatePublished));
     }
 
     [HttpGet("{slug}")]

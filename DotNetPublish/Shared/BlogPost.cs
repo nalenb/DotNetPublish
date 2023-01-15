@@ -5,7 +5,7 @@ namespace DotNetPublish.Shared;
 public class BlogPost
 {
     public int Id { get; set; }
-    [Required, StringLength(50)]
+    [Required, StringLength(50, ErrorMessage = "Must be 50 characters or less")]
     public string Slug { get; set; } = string.Empty;
     [Required]
     public string Title { get; set; } = string.Empty;

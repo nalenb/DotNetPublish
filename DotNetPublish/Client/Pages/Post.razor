@@ -15,7 +15,7 @@ else {
     <h3>@CurrentPost.Title</h3>
 
     <p>
-        @CurrentPost.Content
+        @((MarkupString) Markdown.ToHtml(CurrentPost.Content))
     </p>
 }
 

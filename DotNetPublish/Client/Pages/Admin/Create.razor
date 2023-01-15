@@ -38,7 +38,11 @@
     </div>
     <div>
         <label for="content">Content</label>
-        <InputTextArea id="content" @bind-Value="newBlogPost.Content" />
+        <BlogTextArea id="content" @bind-Value="newBlogPost.Content" />
+    </div>
+    <div>
+        <label for="content-preview">Content Preview</label>
+        <div id="content-preview" style="height: 100%;">@((MarkupString) Markdown.ToHtml(newBlogPost.Content))</div>
     </div>
     <button type="submit">Create</button>
     <ValidationSummary />
