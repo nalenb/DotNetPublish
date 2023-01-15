@@ -1,0 +1,56 @@
+﻿@page "/admin/create"
+@inject IBlogPostService BlogPostService
+@inject NavigationManager NavigationManager
+
+<h3>Create A New Blog Post</h3>
+
+<EditForm Model="@newBlogPost" OnValidSubmit="CreateNewBlogPost">
+    <DataAnnotationsValidator />
+    <div>
+        <label for="title">Title</label>
+        <InputText id="title" @bind-Value="newBlogPost.Title" />
+        <ValidationMessage For="@(() => newBlogPost.Title)" />
+    </div>
+    <div>
+        <label for="slug">Slug</label>
+        <InputText id="slug" @bind-Value="newBlogPost.Slug" />
+        <ValidationMessage For="@(() => newBlogPost.Slug)" />
+    </div>
+    <div>
+        <label for="author">Author</label>
+        <InputText id="author" @bind-Value="newBlogPost.Author" />
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <InputText id="description" @bind-Value="newBlogPost.Description" />
+    </div>
+    <div>
+        <label for="date-published">Date Published</label>
+        <InputDate id="date-published" @bind-Value="newBlogPost.DatePublished" />
+    </div>
+    <div>
+        <InputCheckbox id="is-published" @bind-Value="newBlogPost.IsPublished" />
+        <label for="is-published">Published?</label>
+    </div>
+    <div>
+        <label for="content">Content</label>
+        <InputTextArea id="content" @bind-Value="newBlogPost.Content" />
+    </div>
+    <button type="submit">Create</button>
+    <ValidationSummary />
+</EditForm>
+
+
+@code {
+    private BlogPost newBlogPost = new BlogPost();
+
+    private async Task CreateNewBlogPost()
+    {
+        var createdPost = await BlogPostService.CreatBlogPost(newBlogPost);
+
+        if (createdPost != null)
+        {
+            NavigationManager.NavigateTo($"posts/{createdPost.Slug}");
+        }
+    }
+}

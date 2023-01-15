@@ -31,4 +31,13 @@ public class BlogPostController : ControllerBase
 
         return Ok(foundPost);
     }
+
+    [HttpPost]
+    public async Task<ActionResult<BlogPost>> Post(BlogPost newBlogPost)
+    {
+        _context.Add(newBlogPost);
+        await _context.SaveChangesAsync();
+
+        return Ok(newBlogPost);
+    }
 }

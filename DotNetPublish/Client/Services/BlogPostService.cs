@@ -32,4 +32,10 @@ public class BlogPostService : IBlogPostService
 
         return null;
     }
+
+    public async Task<BlogPost?> CreatBlogPost(BlogPost newPost)
+    {
+        var result = await _http.PostAsJsonAsync("api/BlogPost/", newPost);
+        return await result.Content.ReadFromJsonAsync<BlogPost>();
+    }
 }

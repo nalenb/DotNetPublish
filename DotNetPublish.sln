@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetPublish.Server", "DotNetPublish\Server\DotNetPublish.Server.csproj", "{52BC3876-5B61-46BB-BBD6-D77D88334DB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetPublish.Server", "DotNetPublish\Server\DotNetPublish.Server.csproj", "{52BC3876-5B61-46BB-BBD6-D77D88334DB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetPublish.Client", "DotNetPublish\Client\DotNetPublish.Client.csproj", "{8053A8D2-AAC4-4815-B50D-96E291B9B43E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetPublish.Client", "DotNetPublish\Client\DotNetPublish.Client.csproj", "{8053A8D2-AAC4-4815-B50D-96E291B9B43E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetPublish.Shared", "DotNetPublish\Shared\DotNetPublish.Shared.csproj", "{4F04F356-AD75-48F5-91AB-62D63D06592B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetPublish.Shared", "DotNetPublish\Shared\DotNetPublish.Shared.csproj", "{4F04F356-AD75-48F5-91AB-62D63D06592B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E885179-3EEB-4540-9A8D-2A64812371BA}"
 	ProjectSection(SolutionItems) = preProject
