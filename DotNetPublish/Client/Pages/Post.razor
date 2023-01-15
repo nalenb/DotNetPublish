@@ -3,7 +3,7 @@
 
 @if (CurrentPost == null)
 {
-    <p>Loading...</p>
+    <p>@Message</p>
 }
 else {
     <h3>@CurrentPost.Title</h3>
@@ -17,10 +17,16 @@ else {
     [Parameter]
     public string Slug { get; set; } = string.Empty;
 
+    private string Message = "Loading...";
     private BlogPost? CurrentPost;
 
     protected override async Task OnInitializedAsync()
     {
         CurrentPost = await BlogPostService.GetBlogPost(Slug);
+
+        if (CurrentPost == null)
+        {
+            Message = "Requested post was not found";
+        }
     }
 }

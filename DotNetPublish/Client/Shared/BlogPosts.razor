@@ -2,25 +2,33 @@
 
 <h3>BlogPosts</h3>
 
-@foreach (var post in Posts)
+@if (Posts == null)
 {
-    <div>
-        <p>@post.Title</p>
-        <p>@post.Description</p>
-        <p><a href="/posts/@post.Slug">Read more...</a></p>
-    </div>    
+    <p>@Message</p>    
+}
+else
+{   
+    @foreach (var post in Posts)
+    {
+        <div>
+            <p>@post.Title</p>
+            <p>@post.Description</p>
+            <p><a href="/posts/@post.Slug">Read more...</a></p>
+        </div>    
+    }
 }
 
 @code {
-    private List<BlogPost> Posts = new List<BlogPost>();
+    private string Message = "Loading...";
+    private List<BlogPost>? Posts;
 
     protected override async Task OnInitializedAsync()
     {
-        var posts = await BlogPostSerivce.GetBlogPosts();
+        Posts = await BlogPostSerivce.GetBlogPosts();
 
-        if (posts != null)
+        if (Posts == null)
         {
-            Posts = posts;
+            Message = "Could not loading posts";
         }
     }
 }

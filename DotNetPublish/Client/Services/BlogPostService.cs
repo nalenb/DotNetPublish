@@ -13,15 +13,23 @@ public class BlogPostService : IBlogPostService
 
     public async Task<List<BlogPost>?> GetBlogPosts()
     {
-        var posts = await _http.GetFromJsonAsync<List<BlogPost>>("api/BlogPost/");
+        var result = await _http.GetAsync("api/BlogPost/");
+        if (result.IsSuccessStatusCode)
+        {
+            return await result.Content.ReadFromJsonAsync<List<BlogPost>>();
+        }
 
-        return posts;
+        return null;
     }
 
     public async Task<BlogPost?> GetBlogPost(string slug)
     {
-        var post = await _http.GetFromJsonAsync<BlogPost>($"api/BlogPost/{slug}");
+        var result = await _http.GetAsync($"api/BlogPost/{slug}");
+        if (result.IsSuccessStatusCode)
+        {
+            return await result.Content.ReadFromJsonAsync<BlogPost>();
+        }
 
-        return post;
+        return null;
     }
 }
